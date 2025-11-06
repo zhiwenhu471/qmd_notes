@@ -1,0 +1,60 @@
+---
+title: "Hello, Quarto"
+format:
+  pdf:
+    documentclass: ctexart
+    latex-engine: xelatex
+editor: visual
+---
+
+```{r}
+#| label: load-packages
+#| include: true
+
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Meet Quarto
+
+`include = false` 代码会被执行，但代码块本身和其输出都不会出现在最终文档中
+
+`echo = false` 代码不显示，但输出结果会显示
+
+`eval = false` 代码显示， 但不执行
+
+`warning = false` `message = false` 不显示警告或者信息
+
+`results = 'hide'` 执行代码，但是不显示输出结果
+
+`fig.show = 'hide'` 不显示图表
+
+I am **ready** for my *class* up. The syntax is the same as md.
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Meet the penguins
+
+![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png){style="float:right;" fig-alt="Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst." width="401"}
+
+The `penguins` data from the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins "palmerpenguins R package") package contains size measurements for `{r} nrow(penguins)` penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.
+
+The plot below shows the relationship between flipper and bill lengths of these penguins.
+
+```{r}
+#| label: plot-penguins
+#| warning: false
+#| echo: false
+
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(
+    title = "Flipper and bill length",
+    subtitle = "Dimensions for penguins at Palmer Station LTER",
+    x = "Flipper length (mm)", y = "Bill length (mm)",
+    color = "Penguin species", shape = "Penguin species"
+  ) +
+  theme_minimal()
+```
